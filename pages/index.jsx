@@ -33,6 +33,20 @@ export default function Home() {
     }
   }
 
+  const precessTab = (e) => {
+    const KEY_TAB = 9;
+    if (e.keyCode === KEY_TAB && !e.shiftKey) {
+      e.preventDefault();
+      const textarea = document.querySelector('#code');
+      textarea.setRangeText(
+        '    ',
+        textarea.selectionStart,
+        textarea.selectionStart,
+        'end'
+      );
+    }
+  }
+
   const onSubmit = async (event) => {
     event.preventDefault()
     setShowError(false);
@@ -93,21 +107,22 @@ export default function Home() {
             <div className="relative w-full my-2">
               <textarea id="code"
                         name="code"
-                        className={`w-full h-60 sm:h-80 text-[#f8f8f2] font-mono selection:bg-blue-300 selection:text-blue-900 caret-blue-500 overflow-auto rounded-md bg-[#282923] border-4 ${showError ? 'border-red-800' : 'border-neutral-500 dark:border-stone-700'} resize-none scroll-smooth whitespace-pre break-normal shadow-md drop-shadow-md px-2 py-1 focus:outline-none focus:border-blue-500`}
+                        className={`w-full h-60 sm:h-80 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-transparent text-[#f8f8f2] font-mono selection:bg-blue-300 selection:text-blue-900 caret-blue-500 overflow-auto rounded-md bg-[#282923] border-4 ${showError ? 'border-red-800' : 'border-neutral-500 dark:border-stone-700'} resize-none scroll-smooth whitespace-pre break-normal shadow-md drop-shadow-md px-2 py-1 focus:outline-none focus:border-blue-500`}
                         placeholder="Write some code..."
                         disabled={submitState}
                         spellCheck={false}
                         autoCorrect="false"
                         autoCapitalize="false"
+                        onKeyDown={precessTab}
               / >
-              <div className="absolute right-3 top-3 text-lg text-neutral-500 cursor-pointer select-none no-touch:hover:text-white active:text-white"
+              <div className="absolute right-4 top-4 text-xl text-neutral-500 cursor-pointer select-none no-touch:hover:text-white active:text-white"
                    role="link"
                    onClick={copyCode}
               >{copied ? <LuCheck className="text-white" /> : <LuCopy />}</div>
             </div>
             <div className="w-full my-0 px-1 flex flex-col-reverse items-center sm:flex-row sm:items-start gap-2 sm:gap-6 justify-between">
               <div className="italic text-xs text-justify">
-                No user information is collected or stored. The content of the text field is processed with <a href="https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-AWQ" className="underline">TheBloke's CodeLlama 7B Instruct</a> large language model (AWQ), a fast and accurate Code Llama variant, hosted by Cloudflare. Subject to their privacy policy.
+                No user information is collected or stored. The content of the text field is processed with <a href="https://huggingface.co/TheBloke/CodeLlama-7B-Instruct-AWQ" rel="noopener noreferrer" target="_blank" tabIndex="-1" className="underline">TheBloke's CodeLlama 7B Instruct</a> large language model (AWQ), a fast and accurate Code Llama variant, hosted by Cloudflare. Subject to their privacy policy.
               </div>
               <div className="shrink-0 my-1">
                 <button type="Submit"
