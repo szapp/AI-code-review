@@ -85,7 +85,7 @@ export default function Layout({ children }) {
       </Head>
       <div className="absolute top-2 right-2 sm:top-3 sm:right-4 items-right flex flex-row gap-3 justify-end text-2xl leading-none select-none">
         <a href="#" onClick={toggleDark} className="relative bg-neutral-400 dark:bg-neutral-700 rounded-full w-14 h-7 text-sm whitespace-nowrap"><IoMdSunny className="absolute top-1 left-1 w-5 h-5 bg-white dark:bg-transparent text-blue-500 dark:text-inherit rounded-full p-1" /><IoMdMoon className="absolute top-1 right-1 w-5 h-5 dark:bg-black dark:text-blue-500 rounded-full p-1" /></a>
-        <a href="https://github.com/szapp/ai-code-review"><FaGithub className="block w-7 h-7" /></a>
+        <a href="https://github.com/szapp/AI-code-review"><FaGithub className="block w-7 h-7" /></a>
       </div>
       {children}
     </div>
