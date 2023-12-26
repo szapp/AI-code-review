@@ -3,25 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
+  --foreground-rgb: 85, 85, 85;
+  --foreground2-rgb: 51, 51, 51;
+  --foreground3-rgb: 0, 0, 0;
+  --background-start-rgb: 204, 209, 210;
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:root.dark {
+  --foreground-rgb: 170, 170, 170;
+  --foreground2-rgb: 204, 204, 204;
+  --foreground3-rgb: 255, 255, 255;
+  --background-start-rgb: 30, 30, 20;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--background-start-rgb)),
+      transparent
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--background-end-rgb));
+  background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    margin-left: calc(100vw - 100%);
+    margin-right: 0;
+  }
+}
+
+h1, h2, h3, h4 {
+  color: rgb(var(--highlight-color));
+}
+
+a:active, a:focus-visible {
+  color: rgb(var(--foreground3-rgb));
+}
+
+@media screen and (any-pointer: fine) {
+  a:hover {
+    color: rgb(var(--foreground3-rgb));
+  }
 }
