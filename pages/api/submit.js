@@ -42,7 +42,7 @@ ${data.code}`
   var output = response?.response || '';
 
   // Extract code and drop notes and remarks
-  const codeRegExp = /\#\*{10}\#\s*(.*)\s*\#\*{10}\#/s;
+  const codeRegExp = /\#\*{10}\#\s*(.*?)\s*\#\*{10}\#/s;
   const match = output.match(codeRegExp);
   if (match == null || match.length < 2)
     return error('Internal error', 500, { details: 'Could not extract code from: ' + output });
