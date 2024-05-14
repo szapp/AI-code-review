@@ -1,5 +1,3 @@
-import { Ai } from '@cloudflare/ai';
-
 export const config = {
   runtime: 'edge',
 }
@@ -24,7 +22,6 @@ export default async function handler(req, res, ctx) {
   }
 
   // Answer the query
-  const ai = new Ai(process.env.AI);
   let input = {
     messages: [
       { role: 'system', content: 'You are a helpful programming assistant fluent in all popular high-level programming languages.'},
@@ -38,7 +35,7 @@ ${data.code}`
       },
     ]
   };
-  const response = await ai.run('@hf/thebloke/codellama-7b-instruct-awq', input);
+  const response = await process.env.AI.run('@hf/thebloke/codellama-7b-instruct-awq', input);
   var output = response?.response || '';
 
   // Extract code and drop notes and remarks
